@@ -5,19 +5,15 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>ICAR Orchard Spray Cost Calculator</title>
 
-  <!-- Editable design tokens: change these to restyle the site -->
   <style>
     :root{
-      --bg: #0f1724;                /* body background */
-      --card: #0b1220;              /* card / input background */
+      --bg: #87ceeb;                /* sky blue background */
+      --card: #ffffff;              /* card background */
       --accent: #7c3aed;            /* primary buttons / accents */
-      --muted: #9aa4b2;             /* secondary text */
-      --text: #e6eef6;              /* main text */
-      --success: #22c55e;
-      --danger: #ef4444;
+      --muted: #444;                /* secondary text */
+      --text: #000;                 /* main text */
       --radius: 12px;
       --maxwidth: 980px;
-      --mono: ui-monospace, SFMono-Regular, Menlo, Monaco, "Roboto Mono", "Segoe UI Mono";
       font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
       font-size: 15px;
     }
@@ -28,10 +24,9 @@
       display:flex;
       align-items:center;
       justify-content:center;
-      background: linear-gradient(180deg, var(--bg), #071025);
+      background: var(--bg);
       color:var(--text);
       padding:24px;
-      -webkit-font-smoothing:antialiased;
     }
 
     .wrapper{
@@ -44,10 +39,10 @@
     }
 
     .card{
-      background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+      background: var(--card);
       border-radius: var(--radius);
       padding:20px;
-      box-shadow: 0 10px 30px rgba(2,6,23,0.6);
+      box-shadow: 0 10px 30px rgba(0,0,0,0.2);
     }
 
     header.app-header{
@@ -66,43 +61,38 @@
 
     form .row{display:flex;gap:10px;align-items:center;margin-top:8px}
     label{display:block;font-size:13px;color:var(--muted);margin-bottom:6px}
-    select,input[type="number"], input[type="text"]{
-      width:100%;padding:10px;border-radius:10px;border:1px solid rgba(255,255,255,0.04);
-      background: var(--card); color:var(--text); font-size:14px;
+    select,input[type="number"]{
+      width:100%;padding:10px;border-radius:10px;border:1px solid #ccc;
+      background: #f9f9f9; color:var(--text); font-size:14px;
     }
-    select option{background:var(--card); color:var(--text)}
 
     .controls{display:flex;gap:10px;margin-top:12px}
     button.btn{
       padding:10px 14px;border-radius:10px;border:none;background:var(--accent);color:white;
-      font-weight:600;cursor:pointer;box-shadow:0 6px 14px rgba(124,58,237,0.14)
+      font-weight:600;cursor:pointer;
     }
-    button.ghost{background:transparent;border:1px solid rgba(255,255,255,0.06); color:var(--muted)}
+    button.ghost{background:transparent;border:1px solid #aaa; color:var(--muted)}
 
     .result {
       margin-top:12px;
-      padding:14px;border-radius:10px;background: linear-gradient(180deg, rgba(255,255,255,0.01), rgba(255,255,255,0.005));
-      border:1px solid rgba(255,255,255,0.03);
+      padding:14px;border-radius:10px;background: #f2f8ff;
+      border:1px solid #ccc;
     }
     .big{font-size:26px;font-weight:700}
-    .breakdown{font-size:13px;color:var(--muted);margin-top:8px}
     .muted{color:var(--muted);font-size:13px}
+    .breakdown{font-size:13px;color:var(--muted);margin-top:8px;display:none}
 
     aside.side {
       display:flex;flex-direction:column;gap:12px;
     }
-    .panel{padding:14px;border-radius:10px;background:rgba(255,255,255,0.01);border:1px solid rgba(255,255,255,0.02)}
+    .panel{padding:14px;border-radius:10px;background:#fdfdfd;border:1px solid #ccc}
     .panel h3{margin:0 0 8px 0;font-size:14px}
     .small{font-size:13px;color:var(--muted)}
 
     footer.app-footer{
       grid-column:1 / -1;
       margin-top:12px;color:var(--muted);font-size:13px;
-      display:flex;justify-content:space-between;gap:10px;align-items:center;
-    }
-
-    textarea.disclaimer{
-      width:100%;min-height:90px;padding:10px;border-radius:8px;background:var(--card);border:1px solid rgba(255,255,255,0.03);color:var(--text)
+      display:flex;flex-direction:column;gap:8px;
     }
 
     /* responsive */
@@ -118,7 +108,7 @@
         <div class="logo">ICAR</div>
         <div>
           <h1 id="appTitle">Orchard Spray Cost Calculator</h1>
-          <p class="lead">Estimate pesticide material & application cost per kanal (based on ICAR model).</p>
+          <p class="lead">Estimate pesticide material & application cost per kanal</p>
         </div>
       </header>
 
@@ -142,7 +132,7 @@
           <div style="flex:1">
             <label for="area">Area to estimate</label>
             <input id="area" type="number" value="1" min="0.01" step="0.01" /> 
-            <div class="muted" style="margin-top:6px">Area in kanal (you can enter decimals)</div>
+            <div class="muted" style="margin-top:6px">Area in kanal</div>
           </div>
 
           <div style="width:160px">
@@ -164,30 +154,32 @@
           <div style="margin-top:8px"><span class="muted">Application cost (Rs / kanal)</span><div class="big" id="applicationVal">—</div></div>
           <div style="margin-top:8px"><span class="muted">Total cost (Rs / kanal)</span><div class="big" id="totalVal">—</div></div>
 
+          <button class="btn" id="toggleBreakdownBtn" type="button" style="margin-top:10px;background:#3b82f6">See Detailed Breakdown</button>
           <div class="breakdown" id="breakdownBox"></div>
         </div>
       </form>
 
       <footer class="app-footer">
-        <div id="footerText">Developed by ICAR-Central Institute of Temperate Horticulture, Srinagar</div>
-        <div class="small">ICAR model • Values editable in <code>data.json</code></div>
+        <div>Developed by ICAR-Central Institute of Temperate Horticulture, Srinagar</div>
+        <div id="disclaimerText" class="small">
+          The Publisher or authors have no responsibility for the persistence or accuracy
+          of URLs for external or third-party internet websites referred to in this calculator,
+          and does not guarantee that any content on such websites is, or will remain,
+          accurate or appropriate. No liability whatsoever is accepted for use of the
+          content in this calculator. Though all efforts have been made to keep the content
+          of this publication accurate and up to date, the same should not be construed
+          as a statement of law or used for any legal purpose.
+        </div>
       </footer>
     </main>
 
     <aside class="side">
       <div class="panel">
-        <h3>Quick reference</h3>
-        <div class="small">Spray volume and dosage vary by orchard system and age. Choose system & age, then insecticide.</div>
-      </div>
-
-      <div class="panel">
-        <h3>Disclaimers (editable)</h3>
-        <textarea id="disclaimer" class="disclaimer" placeholder="Add or edit disclaimers here...">This calculator provides estimated costs for guidance only. It does not constitute official recommendations. Update prices and local labour/fuel costs as needed.</textarea>
-      </div>
-
-      <div class="panel">
-        <h3>Advanced / Overrides</h3>
-        <div class="small">You can edit `data.json` to change machine defaults, fuel price, labour, or add insecticide prices. Values are loaded on page load.</div>
+        <h3>Reference</h3>
+        <div class="small">
+          Shah, M. A., Tramboo, H. A., Rehman, S. A., Parvez, B., Nabi, S. U., Raja, W. H., Malik, G., Jaiswal, R., Mir, J. I., Sharma, O. C., & Verma, M. K. (2025).
+          Estimation of the cost of insecticide application in apple orchards (Reference No. CITH/PME/2025/02, Edition 01, p. 28). ICAR-Central Institute of Temperate Horticulture, Srinagar, J&K, India
+        </div>
       </div>
     </aside>
   </div>
