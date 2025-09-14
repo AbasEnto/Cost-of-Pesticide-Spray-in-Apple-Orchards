@@ -1,0 +1,75 @@
+{
+  "sprayVolume": {
+    "traditional": {
+      "1-5": 60,
+      "5-10": 100,
+      "10-20": 160,
+      ">20": 300
+    },
+    "high": {
+      "1-2": 167,
+      "2-5": 250,
+      ">5": 418
+    },
+    "medium": {
+      "1-2": 111,
+      "2-5": 222,
+      ">5": 444
+    }
+  },
+  "costPer100L": {
+    "Dimethoate 30 EC": 75,
+    "Chlorpyriphos 20 EC": 100,
+    "Quinalphos 25 EC": 150,
+    "Thiacloprid 240 SC": 140.8,
+    "Bifenthrin 8 SC": 78.75,
+    "HMO Dormant": 300,
+    "HMO Summer": 75,
+    "Imidacloprid 17.8 SL": 122,
+    "Thiamethoxam 25 WG": 80,
+    "Chlorpyriphos50%+Cypermethrin": 180,
+    "Thiamethoxam+lambda ZC": 104,
+    "Imidacloprid+lambda SL": 105,
+    "Neem oil 1500 ppm": 360
+  },
+  "defaults": {
+    "machine": {
+      "purchasePrice": 35000,
+      "currentListPrice": 33000,
+      "machineAgeYears": 5,
+      "expectedLifeYears": 10,
+      "annualHours": 100
+    },
+    "economic": {
+      "realInterestRate": 0.08,
+      "TIH_rate": 0.03
+    },
+    "operational": {
+      "repair_pct_per_year": 0.10,
+      "fuel_l_per_hr": 1.48,
+      "fuel_price_per_L": 100.31,
+      "lubrication_pct": 0.15,
+      "numLabourUnits": 2,
+      "wage_per_day": 700,
+      "workday_hours": 8,
+      "spray_rate_L_per_hr": 200
+    },
+    "hours_bucket": {
+      "typeI_max_L": 200,
+      "typeI_hours_per_kanal": 1,
+      "typeII_hours_per_kanal": 2.25
+    }
+  },
+  "rvf": {
+    "1": 0.65,
+    "2": 0.60,
+    "3": 0.56,
+    "4": 0.53,
+    "5": 0.50,
+    "6": 0.48,
+    "7": 0.46,
+    "8": 0.44,
+    "9": 0.42,
+    "10": 0.40
+  }
+}
