@@ -18,13 +18,19 @@
   const breakdownBox = document.getElementById('breakdownBox');
 
   // populate orchard systems
-  const systems = Object.keys(data.sprayVolume);
-  systems.forEach(s => {
-    const opt = document.createElement('option');
-    opt.value = s;
-    opt.textContent = s.charAt(0).toUpperCase() + s.slice(1);
-    systemEl.appendChild(opt);
-  });
+  const systemLabels = {
+  traditional: "Traditional Orchard",
+  high: "High Density Orchard",
+  medium: "Medium Density Orchard"
+};
+
+const systems = Object.keys(data.sprayVolume);
+systems.forEach(s => {
+  const opt = document.createElement('option');
+  opt.value = s;
+  opt.textContent = systemLabels[s] || s;
+  systemEl.appendChild(opt);
+});
 
   function populateAges(){
     ageEl.innerHTML = '';
