@@ -1,82 +1,74 @@
 <!doctype html>
 <html lang="en">
-  <header class="top-header">
-  <div class="left">
-    <img src="logo.jpg" alt="ICAR logo" />
-  </div>
-  <div class="center">
-    <h1>ICAR-Central Institute of Temperate Horticulture, Srinagar</h1>
-  </div>
-  <div class="right">
-    <img src="apple.png" alt="Apple" />
-  </div>
-</header>
-<hr class="ribbon" />
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title> Orchard Spray Cost Calculator</title>
+  <title>ICAR Orchard Spray Cost Calculator</title>
 
   <style>
     :root{
-      --bg: #87ceeb;                /* sky blue background */
-      --card: #ffffff;              /* card background */
-      --accent: #7c3aed;            /* primary buttons / accents */
-      --muted: #444;                /* secondary text */
-      --text: #000;                 /* main text */
+      --bg: #87ceeb; /* sky blue background */
+      --card: #ffffff; /* card background */
+      --accent: #7c3aed; /* primary buttons / accents */
+      --muted: #444; /* secondary text */
+      --text: #000; /* main text */
       --radius: 12px;
       --maxwidth: 980px;
       font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
       font-size: 15px;
     }
-    .top-header {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 12px 20px;
-  background: #e6f7ff; /* light sky blue */
-  border-radius: 10px;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.15);
-}
-
-.top-header .center h1 {
-  margin: 0;
-  font-size: 22px;
-  font-weight: bold;
-  color: #005a2a; /* dark green for ICAR branding */
-  text-align: center;
-}
-
-.top-header img {
-  height: 70px;
-  object-fit: contain;
-}
-
-.ribbon {
-  border: none;
-  height: 4px;
-  background: #005a2a; /* ICAR green ribbon */
-  margin: 0 0 10px 0;
-}
-
-.calc-title {
-  text-align: center;
-  margin: 10px 0 20px 0;
-  font-size: 20px;
-  font-weight: 600;
-}
     *{box-sizing:border-box}
     body{
       margin:0;
       min-height:100vh;
       display:flex;
+      flex-direction:column;
       align-items:center;
-      justify-content:center;
       background: var(--bg);
       color:var(--text);
       padding:24px;
     }
 
+    /* --- Header bar --- */
+    .top-header {
+      width:100%;
+      max-width:var(--maxwidth);
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      padding: 12px 20px;
+      background: #e6f7ff;
+      border-radius: 10px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+      margin-bottom:10px;
+    }
+    .top-header .center h1 {
+      margin:0;
+      font-size:22px;
+      font-weight:bold;
+      color:#005a2a; /* ICAR green */
+      text-align:center;
+    }
+    .top-header img {
+      height:70px;
+      object-fit:contain;
+    }
+    .ribbon {
+      border:none;
+      height:4px;
+      background:#005a2a; /* ICAR green ribbon */
+      margin:0 0 10px 0;
+      width:100%;
+      max-width:var(--maxwidth);
+    }
+    .calc-title {
+      text-align:center;
+      margin:10px 0 20px 0;
+      font-size:20px;
+      font-weight:600;
+    }
+
+    /* --- Calculator layout --- */
     .wrapper{
       width:100%;
       max-width:var(--maxwidth);
@@ -146,10 +138,31 @@
     /* responsive */
     @media (max-width:980px){
       .wrapper{grid-template-columns:1fr}
+      .top-header{flex-direction:column;gap:8px;text-align:center}
     }
   </style>
 </head>
 <body>
+
+  <!-- Top ICAR Header -->
+  <header class="top-header">
+    <div class="left">
+      <img src="logo.jpg" alt="ICAR logo" />
+    </div>
+    <div class="center">
+      <h1>ICAR-Central Institute of Temperate Horticulture, Srinagar</h1>
+    </div>
+    <div class="right">
+      <img src="apple.png" alt="Apple" />
+    </div>
+  </header>
+
+  <!-- Green ribbon -->
+  <hr class="ribbon" />
+
+  <!-- Calculator title -->
+  <h2 class="calc-title">Estimate pesticide material & application cost per kanal</h2>
+
   <div class="wrapper">
     <main class="card" role="main" aria-labelledby="appTitle">
       <header class="app-header">
@@ -179,7 +192,7 @@
         <div class="row">
           <div style="flex:1">
             <label for="area">Area to estimate</label>
-            <input id="area" type="number" value="1" min="0.01" step="0.01" /> 
+            <input id="area" type="number" value="1" min="0.01" step="0.1" /> 
             <div class="muted" style="margin-top:6px">Area in kanal</div>
           </div>
 
@@ -208,19 +221,19 @@
       </form>
 
       <footer class="app-footer">
-  <div>Developed by ICAR-Central Institute of Temperate Horticulture, Srinagar</div>
-  <div id="disclaimerText" class="small">
-    The Publisher or authors have no responsibility for the persistence or accuracy
-    of URLs for external or third-party internet websites referred to in this calculator, and does not 
-    guarantee that any content on such websites is, or will remain, accurate or appropriate. No
-    liability whatsoever is accepted for use of the content in this calculator. Though all efforts have 
-    been made to keep the content of this publication accurate and up to date, the same should
-    not be construed as a statement of law or used for any legal purpose.
-  </div>
-  <div style="margin-top:10px;">
-  <img src="https://hits.sh/abasento.github.io/Cost-of-Pesticide-Spray-in-Apple-Orchards.svg?style=flat-square&label=visits&color=blue" alt="Visitor counter"/>
-</div>
-</footer>
+        <div>Developed by ICAR-Central Institute of Temperate Horticulture, Srinagar</div>
+        <div id="disclaimerText" class="small">
+          The Publisher or authors have no responsibility for the persistence or accuracy
+          of URLs for external or third-party internet websites referred to in this calculator, and does not 
+          guarantee that any content on such websites is, or will remain, accurate or appropriate. No
+          liability whatsoever is accepted for use of the content in this calculator. Though all efforts have 
+          been made to keep the content of this publication accurate and up to date, the same should
+          not be construed as a statement of law or used for any legal purpose.
+        </div>
+        <div style="margin-top:10px;">
+          <img src="https://hits.sh/abasento.github.io/Cost-of-Pesticide-Spray-in-Apple-Orchards.svg?style=flat-square&label=visits&color=blue" alt="Visitor counter"/>
+        </div>
+      </footer>
     </main>
 
     <aside class="side">
@@ -235,5 +248,5 @@
   </div>
 
   <script src="app.js"></script>
-  </body>
+</body>
 </html>
