@@ -232,7 +232,7 @@
         </footer>
       </main>
 
-     <!-- SIDEBAR -->
+    <!-- SIDEBAR -->
 <aside class="side">
   <div class="panel">
     <h3>Basic Assumptions</h3>
@@ -253,28 +253,9 @@
       <li>Orchards classified based on spray volume needed for labour requirement: Type I (<200 L/kanal) and Type II (200–450 L/kanal).</li>
       <li>Equipment and water available near orchard; no rental or transport downtime included.</li>
     </ul>
-    <a href="#" id="read-more" style="display:block; margin-top:5px;">Read More</a>
+    <a href="#" id="toggle-points" style="display:block; margin-top:5px;">Read More</a>
   </div>
 </aside>
-
-<script>
-  const list = document.querySelectorAll('#assumptions-list li');
-  const readMore = document.getElementById('read-more');
-  const initialVisible = 7;
-
-  // Hide all items beyond the first 7
-  list.forEach((li, index) => {
-    if(index >= initialVisible) li.style.display = 'none';
-  });
-
-  // Toggle visibility on click
-  readMore.addEventListener('click', function(e) {
-    e.preventDefault();
-    let hiddenItems = Array.from(list).slice(initialVisible);
-    hiddenItems.forEach(li => li.style.display = 'list-item');
-    readMore.style.display = 'none'; // hide the "Read More" link
-  });
-</script>
 
         <div class="panel">
           <h3>Reference</h3>
@@ -296,3 +277,35 @@
   <script src="app.js"></script>
 </body>
 </html>
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+  const list = document.querySelectorAll('#assumptions-list li');
+  const toggleLink = document.getElementById('toggle-points');
+  const initialVisible = 7;
+  let expanded = false;
+
+  // Hide items beyond the first 7
+  list.forEach((li, index) => {
+    if(index >= initialVisible) li.style.display = 'none';
+  });
+
+  toggleLink.addEventListener('click', function(e) {
+    e.preventDefault();
+    expanded = !expanded;
+
+    if(expanded) {
+      // Show remaining points
+      list.forEach((li, index) => {
+        if(index >= initialVisible) li.style.display = 'list-item';
+      });
+      toggleLink.textContent = 'Read Less';
+    } else {
+      // Collapse back to first 7
+      list.forEach((li, index) => {
+        if(index >= initialVisible) li.style.display = 'none';
+      });
+      toggleLink.textContent = 'Read More';
+    }
+  });
+});
+</script>
