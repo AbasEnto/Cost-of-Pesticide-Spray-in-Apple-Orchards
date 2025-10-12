@@ -3,15 +3,15 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Apple Orchard Spray Cost Calculator</title>
+  <title>ICAR Orchard Spray Cost Calculator</title>
 
   <style>
     :root{
       --bg: #87ceeb; /* sky blue background */
-      --card: #ffffff; /* card background */
-      --accent: #7c3aed; /* primary buttons / accents */
-      --muted: #444; /* secondary text */
-      --text: #000; /* main text */
+      --card: #ffffff;
+      --accent: #7c3aed;
+      --muted: #444;
+      --text: #000;
       --radius: 12px;
       --maxwidth: 980px;
       font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
@@ -22,53 +22,13 @@
       margin:0;
       min-height:100vh;
       display:flex;
-      flex-direction:column;
       align-items:center;
+      justify-content:center;
       background: var(--bg);
       color:var(--text);
       padding:24px;
     }
 
-    /* --- Header bar --- */
-    .top-header {
-      width:100%;
-      max-width:var(--maxwidth);
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      padding: 12px 20px;
-      background: #e6f7ff;
-      border-radius: 10px;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.15);
-      margin-bottom:10px;
-    }
-    .top-header .center h1 {
-      margin:0;
-      font-size:22px;
-      font-weight:bold;
-      color:#005a2a; /* ICAR green */
-      text-align:center;
-    }
-    .top-header img {
-      height:70px;
-      object-fit:contain;
-    }
-    .ribbon {
-      border:none;
-      height:4px;
-      background:#005a2a; /* ICAR green ribbon */
-      margin:0 0 10px 0;
-      width:100%;
-      max-width:var(--maxwidth);
-    }
-    .calc-title {
-      text-align:center;
-      margin:10px 0 20px 0;
-      font-size:20px;
-      font-weight:600;
-    }
-
-    /* --- Calculator layout --- */
     .wrapper{
       width:100%;
       max-width:var(--maxwidth);
@@ -83,6 +43,32 @@
       border-radius: var(--radius);
       padding:20px;
       box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+    }
+
+    /* HEADER SECTION */
+    .page-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: #e0f2ff;
+      padding: 10px 20px;
+      border-radius: var(--radius);
+    }
+    .page-header img {
+      height: 60px;
+    }
+    .page-header h1 {
+      margin: 0;
+      font-size: 20px;
+      font-weight: 700;
+      color: #003366;
+      text-align: center;
+    }
+    .ribbon {
+      height: 6px;
+      background: #005a2a;
+      border-radius: 4px;
+      margin: 10px 0 20px 0;
     }
 
     header.app-header{
@@ -126,124 +112,153 @@
       display:flex;flex-direction:column;gap:12px;
     }
     .panel{padding:14px;border-radius:10px;background:#fdfdfd;border:1px solid #ccc}
-    .panel h3{margin:0 0 8px 0;font-size:14px}
+    .panel h3{margin:0 0 8px 0;font-size:14px;color:#003366}
     .small{font-size:13px;color:var(--muted)}
 
+    /* FOOTER SECTION */
+    hr.divider {
+      border: none;
+      border-top: 2px solid #005a2a;
+      margin: 20px 0;
+    }
     footer.app-footer{
       grid-column:1 / -1;
-      margin-top:12px;color:var(--muted);font-size:13px;
-      display:flex;flex-direction:column;gap:8px;
+      text-align:center;
+      color:var(--muted);
+      font-size:13px;
+      display:flex;
+      flex-direction:column;
+      align-items:center;
+      gap:12px;
+    }
+    footer.app-footer #disclaimerText {
+      max-width: 800px;
+      margin: 0 auto;
+      line-height: 1.4;
     }
 
-    /* responsive */
     @media (max-width:980px){
       .wrapper{grid-template-columns:1fr}
-      .top-header{flex-direction:column;gap:8px;text-align:center}
     }
   </style>
 </head>
 <body>
 
-  <!-- Top ICAR Header -->
-  <header class="top-header">
-    <div class="left">
-      <img src="logo.jpg" alt="ICAR logo" />
-    </div>
-    <div class="center">
+  <div class="container" style="width:100%;max-width:var(--maxwidth);margin:auto;">
+    <!-- TOP HEADER -->
+    <div class="page-header">
+      <img src="logo.jpg" alt="ICAR Logo" />
       <h1>ICAR-Central Institute of Temperate Horticulture, Srinagar</h1>
+      <img src="apple.png" alt="Apple Image" />
     </div>
-    <div class="right">
-      <img src="apple.png" alt="Apple" />
-    </div>
-  </header>
 
-  <!-- Green ribbon -->
-  <hr class="ribbon" />
+    <div class="ribbon"></div>
 
-  <!-- Calculator title -->
-  <h2 class="calc-title">Online tool to estimate pesticide material & application cost per kanal in apple orchards</h2>
+    <div class="wrapper">
+      <!-- MAIN CALCULATOR -->
+      <main class="card" role="main" aria-labelledby="appTitle">
+        <header class="app-header">
+          <div class="logo">ICAR</div>
+          <div>
+            <h1 id="appTitle">Orchard Spray Cost Calculator (beta version)</h1>
+            <p class="lead">Estimate pesticide material & application cost per kanal</p>
+          </div>
+        </header>
 
-  <div class="wrapper">
-    <main class="card" role="main" aria-labelledby="appTitle">
-      <header class="app-header">
-        <div class="logo">APPLE</div>
-        <div>
-          <h1 id="appTitle">Orchard Spray Cost Calculator (beta version)</h1>
-                </div>
-      </header>
-
-      <form id="calcForm" onsubmit="return false;">
-        <div>
-          <label for="system">Orchard system</label>
-          <select id="system"></select>
-        </div>
-
-        <div>
-          <label for="age">Tree age group</label>
-          <select id="age"></select>
-        </div>
-
-        <div>
-          <label for="insecticide">Insecticide</label>
-          <select id="insecticide"></select>
-        </div>
-
-        <div class="row">
-          <div style="flex:1">
-            <label for="area">Area to estimate</label>
-            <input id="area" type="number" value="1" min="0.01" step="0.1" /> 
-            <div class="muted" style="margin-top:6px">Area in kanal</div>
+        <form id="calcForm" onsubmit="return false;">
+          <div>
+            <label for="system">Orchard system</label>
+            <select id="system"></select>
           </div>
 
-          <div style="width:160px">
-            <label for="method">Fixed cost method</label>
-            <select id="method">
-              <option value="ASA">ASA&BE</option>
-              <option value="SL">Straight-Line</option>
-            </select>
+          <div>
+            <label for="age">Tree age group</label>
+            <select id="age"></select>
+          </div>
+
+          <div>
+            <label for="insecticide">Insecticide</label>
+            <select id="insecticide"></select>
+          </div>
+
+          <div class="row">
+            <div style="flex:1">
+              <label for="area">Area to estimate</label>
+              <input id="area" type="number" value="1" min="0.01" step="0.01" /> 
+              <div class="muted" style="margin-top:6px">Area in kanal</div>
+            </div>
+
+            <div style="width:160px">
+              <label for="method">Fixed cost method</label>
+              <select id="method">
+                <option value="ASA">ASA&BE</option>
+                <option value="SL">Straight-Line</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="controls">
+            <button class="btn" id="calcBtn" type="button">Calculate</button>
+            <button class="ghost" id="resetBtn" type="button">Reset</button>
+          </div>
+
+          <div id="results" class="result" aria-live="polite">
+            <div><span class="muted">Material cost (Rs / kanal)</span><div class="big" id="materialVal">—</div></div>
+            <div style="margin-top:8px"><span class="muted">Application cost (Rs / kanal)</span><div class="big" id="applicationVal">—</div></div>
+            <div style="margin-top:8px"><span class="muted">Total cost (Rs / kanal)</span><div class="big" id="totalVal">—</div></div>
+
+            <button class="btn" id="toggleBreakdownBtn" type="button" style="margin-top:10px;background:#3b82f6">See Detailed Breakdown</button>
+            <div class="breakdown" id="breakdownBox"></div>
+          </div>
+        </form>
+
+        <!-- Divider line before footer -->
+        <hr class="divider">
+
+        <!-- FOOTER -->
+        <footer class="app-footer">
+          <div><strong>Developed by:</strong><br>ICAR-Central Institute of Temperate Horticulture, Srinagar</div>
+          <div id="disclaimerText" class="small">
+            The Publisher or authors have no responsibility for the persistence or accuracy
+            of URLs for external or third-party internet websites referred to in this calculator, and does not 
+            guarantee that any content on such websites is, or will remain, accurate or appropriate. No
+            liability whatsoever is accepted for use of the content in this calculator. Though all efforts have 
+            been made to keep the content of this publication accurate and up to date, the same should
+            not be construed as a statement of law or used for any legal purpose.
+          </div>
+          <div>
+            <img src="https://hits.sh/abasento.github.io/Cost-of-Pesticide-Spray-in-Apple-Orchards.svg?style=flat-square&label=visits&color=blue" alt="Visitor counter"/>
+          </div>
+        </footer>
+      </main>
+
+      <!-- SIDEBAR -->
+      <aside class="side">
+        <div class="panel">
+          <h3>Basic Assumptions</h3>
+          <ul class="small">
+            <li>Costs are calculated on a per-kanal basis.</li>
+            <li>Spray volume and labour depend on orchard system and tree age.</li>
+            <li>Pesticide prices are based on 2025 ICAR estimates.</li>
+            <li>Results are indicative, not legal or financial advice.</li>
+          </ul>
+        </div>
+
+        <div class="panel">
+          <h3>Reference</h3>
+          <div class="small">
+            Shah, M. A., Tramboo, H. A., Rehman, S. A., Parvez, B., Nabi, S. U., Raja, W. H., Malik, G., Jaiswal, R., Mir, J. I., Sharma, O. C., & Verma, M. K. (2025).
+            Estimation of the cost of insecticide application in apple orchards (Reference No. CITH/PME/2025/02, Edition 01, p. 28). 
+            ICAR-Central Institute of Temperate Horticulture, Srinagar, J&K, India.
           </div>
         </div>
 
-        <div class="controls">
-          <button class="btn" id="calcBtn" type="button">Calculate</button>
-          <button class="ghost" id="resetBtn" type="button">Reset</button>
+        <div class="panel">
+          <h3>Read More</h3>
+          <a href="technical-bulletin.pdf" target="_blank">Read More (PDF)</a>
         </div>
-
-        <div id="results" class="result" aria-live="polite">
-          <div><span class="muted">Material cost (Rs / kanal)</span><div class="big" id="materialVal">—</div></div>
-          <div style="margin-top:8px"><span class="muted">Application cost (Rs / kanal)</span><div class="big" id="applicationVal">—</div></div>
-          <div style="margin-top:8px"><span class="muted">Total cost (Rs / kanal)</span><div class="big" id="totalVal">—</div></div>
-
-          <button class="btn" id="toggleBreakdownBtn" type="button" style="margin-top:10px;background:#3b82f6">See Detailed Breakdown</button>
-          <div class="breakdown" id="breakdownBox"></div>
-        </div>
-      </form>
-
-      <footer class="app-footer">
-        <div>Developed by ICAR-Central Institute of Temperate Horticulture, Srinagar</div>
-        <div id="disclaimerText" class="small">
-          The Publisher or authors have no responsibility for the persistence or accuracy
-          of URLs for external or third-party internet websites referred to in this calculator, and does not 
-          guarantee that any content on such websites is, or will remain, accurate or appropriate. No
-          liability whatsoever is accepted for use of the content in this calculator. Though all efforts have 
-          been made to keep the content of this publication accurate and up to date, the same should
-          not be construed as a statement of law or used for any legal purpose.
-        </div>
-        <div style="margin-top:10px;">
-          <img src="https://hits.sh/abasento.github.io/Cost-of-Pesticide-Spray-in-Apple-Orchards.svg?style=flat-square&label=visits&color=blue" alt="Visitor counter"/>
-        </div>
-      </footer>
-    </main>
-
-    <aside class="side">
-      <div class="panel">
-        <h3>Reference</h3>
-        <div class="small">
-          Shah, M. A., Tramboo, H. A., Rehman, S. A., Parvez, B., Nabi, S. U., Raja, W. H., Malik, G., Jaiswal, R., Mir, J. I., Sharma, O. C., & Verma, M. K. (2025).
-          Estimation of the cost of insecticide application in apple orchards-Technical Bulletin, Reference No. CITH/PME/2025/02, Edition 01. Published by ICAR-Central Institute of Temperate Horticulture, Srinagar, J&K, India, pp. 28.
-        </div>
-      </div>
-    </aside>
+      </aside>
+    </div>
   </div>
 
   <script src="app.js"></script>
