@@ -184,7 +184,7 @@
           <div class="row">
             <div style="flex:1">
               <label for="area">Area to estimate</label>
-              <input id="area" type="number" value="1" min="0.01" step="0.5" /> 
+              <input id="area" type="number" value="1" min="1.0" step="0.5" /> 
               <div class="muted" style="margin-top:6px">Area in kanal</div>
             </div>
 
@@ -331,7 +331,7 @@ if(!isVisible) content.style.display = 'block';
         </div>
 
         <div class="panel">
-          <h3>Read More</h3>
+          <h3>Further Reading</h3>
           <a href="technical-bulletin.pdf" target="_blank">Detailed Technical Bulletin (PDF)</a>
         </div>
       </aside>
@@ -348,7 +348,7 @@ document.addEventListener("DOMContentLoaded", function() {
   const initialVisible = 7;
   let expanded = false;
 
-  // Hide items beyond the first 7
+  // Hide items beyond the first 10
   list.forEach((li, index) => {
     if(index >= initialVisible) li.style.display = 'none';
   });
@@ -364,7 +364,7 @@ document.addEventListener("DOMContentLoaded", function() {
       });
       toggleLink.textContent = 'Read Less';
     } else {
-      // Collapse back to first 7
+      // Collapse back to first 10
       list.forEach((li, index) => {
         if(index >= initialVisible) li.style.display = 'none';
       });
