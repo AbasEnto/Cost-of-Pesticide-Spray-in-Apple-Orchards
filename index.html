@@ -346,10 +346,10 @@ if(!isVisible) content.style.display = 'block';
 document.addEventListener("DOMContentLoaded", function() {
   const list = document.querySelectorAll('#assumptions-list li');
   const toggleLink = document.getElementById('toggle-points');
-  const initialVisible = 6;
+  const initialVisible = 7;
   let expanded = false;
 
-  // Hide items beyond the first 6
+  // Hide items beyond the first 7
   list.forEach((li, index) => {
     if(index >= initialVisible) li.style.display = 'none';
   });
@@ -365,7 +365,7 @@ document.addEventListener("DOMContentLoaded", function() {
       });
       toggleLink.textContent = 'Read Less';
     } else {
-      // Collapse back to first 6
+      // Collapse back to first 7
       list.forEach((li, index) => {
         if(index >= initialVisible) li.style.display = 'none';
       });
