@@ -130,12 +130,16 @@
     return { repairs_per_hr, fuel_per_hr, lube_per_hr, labour_per_hr, variable_per_hr };
   }
 
-  // compute hours per kanal (document buckets)
-  function computeHoursPerKanal(volume) {
-    const hb = data.defaults.hours_bucket;
-    if (volume <= hb.typeI_max_L) return hb.typeI_hours_per_kanal;
-    return hb.typeII_hours_per_kanal;
-  }
+ // compute hours per kanal based on spray volume classification
+function computeHoursPerKanal(volume) {
+  // Classification rule:
+  // Type-I orchard: <200 L spray volume / kanal → 1 hr
+  // Type-II orchard: 200–450 L spray volume / kanal → 2.25 hr
+  // (>450 L treated as Type-II extension)
+  if (volume < 200) return 1.0;       // Type-I
+  if (volume <= 450) return 2.25;     // Type-II
+  return 2.25;                        // default fallback
+}
 
   // compute full results for chosen method (values PER KANAL)
   function computePerKanalResults(system, age, insecticide, method) {
