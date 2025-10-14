@@ -123,9 +123,13 @@ systems.forEach(s => {
 
   function displayResults(sys, age, insect, method, area){
     const res = computeForMethod(sys, age, insect, method);
-    materialVal.textContent = res.material.toFixed(2);
-    applicationVal.textContent = res.application_per_kanal.toFixed(2);
-    totalVal.textContent = res.total_per_kanal.toFixed(2);
+    const materialTotal = res.material * area;
+const applicationTotal = res.application_per_kanal * area;
+const total = res.total_per_kanal * area;
+
+materialVal.textContent = materialTotal.toFixed(2);
+applicationVal.textContent = applicationTotal.toFixed(2);
+totalVal.textContent = total.toFixed(2);
 
     breakdownBox.innerHTML = `
       <div><strong>Breakdown (${method} method)</strong></div>
