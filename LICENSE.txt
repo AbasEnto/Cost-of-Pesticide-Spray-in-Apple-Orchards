@@ -1,0 +1,20 @@
+Copyright © 2025 ICAR–Central Institute of Temperate Horticulture, Srinagar, J&K, India.
+All rights reserved.
+
+This calculator, including its source code, layout, and accompanying documentation, 
+was developed at ICAR–CITH as part of institutional research work titled 
+"Estimation of the Cost of Insecticide Application in Apple Orchards".
+
+Permission is granted for use, distribution, and modification of this code 
+for non-commercial, academic, and research purposes only, 
+provided that appropriate credit is given to ICAR–CITH Srinagar 
+and the original authors are cited in all derived works.
+
+You may not use this work for commercial purposes without prior written permission 
+from ICAR–CITH, Srinagar.
+
+For permissions and inquiries, contact:
+The Director  
+ICAR–Central Institute of Temperate Horticulture  
+Srinagar, Jammu & Kashmir, India  
+Email: dircithsgr@icar.org.in
