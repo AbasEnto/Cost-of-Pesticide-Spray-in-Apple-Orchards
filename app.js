@@ -124,7 +124,7 @@
     const repairs_per_hr = (Number(op.repair_pct_per_year) * C) / H;
     const fuel_per_hr = Number(op.fuel_l_per_hr) * Number(op.fuel_price_per_L);
     const lube_per_hr = Number(op.lubrication_pct) * fuel_per_hr;
-    const labour_per_hr = (Number(op.numLabourUnits) * Number(op.wage_per_day)) / Number(op.workday_hours);
+    const labour_per_hr = 1.2 * (Number(op.numLabourUnits) * Number(op.wage_per_day)) / Number(op.workday_hours);
 
     const variable_per_hr = repairs_per_hr + fuel_per_hr + lube_per_hr + labour_per_hr;
     return { repairs_per_hr, fuel_per_hr, lube_per_hr, labour_per_hr, variable_per_hr };
