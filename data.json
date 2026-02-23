@@ -1,24 +1,23 @@
 {
   "sprayVolume": {
-    "traditional orchard": {
+    "Traditional orchard": {
       "1-5": 60,
       "5-10": 100,
       "10-20": 160,
       ">20": 300
     },
-    "high density orchard": {
+    "High density orchard": {
       "1-2": 167,
       "2-5": 250,
       ">5": 418
     },
-    "medium density orchard": {
+    "Medium density orchard": {
       "1-2": 111,
       "2-5": 222,
       ">5": 444
     }
   },
   "costPer100L": {
-    "Dimethoate 30 EC": 75,
     "Chlorpyriphos 20 EC": 100,
     "Quinalphos 25 EC": 150,
     "Thiacloprid 240 SC": 140.8,
